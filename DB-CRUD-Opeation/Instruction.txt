@@ -1,0 +1,12 @@
+Connect Adminer to MySQL
+
+Fill the login form:
+
+Field	    ---  Value
+System	       MySQL
+Server	       mysql-service
+Username	     root
+Password	     rootpass
+Database	     appdb
+
+Click Login
