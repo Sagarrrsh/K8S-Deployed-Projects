@@ -1,0 +1,30 @@
+kubectl create namespace monitoring
+
+
+user: admin
+pass: admin
+
+
+STEP 5: Connect Grafana → Prometheus
+Grafana → Settings → Data Sources → Prometheus
+
+URL:
+http://prometheus.monitoring.svc.cluster.local:9090
+
+
+Save & test.
+Example PromQL queries
+
+CPU usage
+rate(container_cpu_usage_seconds_total{pod=~"nginx-ms.*"}[1m])
+
+
+Memory usage
+container_memory_usage_bytes{pod=~"nginx-ms.*"}
+
+
+STEP 7: Generate Traffic
+kubectl run load --image=busybox -- /bin/sh -c \
+"while true; do wget -q -O- http://nginx-ms-service; done"
+
+Watch metrics increase live in Grafana.
