@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontend-config
+  namespace: prod
+data:
+  default.conf: |
+    server {
+      listen 80;
+      location / {
+        return 200 "Frontend is live\n";
+      }
+      location /api {
+        proxy_pass http://backend.prod.svc.cluster.local;
+      }
+    }

@@ -1,0 +1,27 @@
+########################
+Traffic Flow
+########################
+
+Client
+  ↓
+NGINX Ingress Controller
+  ↓
+Frontend (UI)
+  ↓
+Backend (API)
+  ↓
+Database (Postgres)
+
+1 .Install NGINX Ingress Controller
+
+Use the official controller:
+
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/cloud/deploy.yaml
+
+2. Add to /etc/hosts:
+
+<INGRESS-IP> app.local
+
+3.  Test:
+curl http://app.local
+curl http://app.local/api/status/200
